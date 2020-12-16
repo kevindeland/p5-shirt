@@ -6,10 +6,10 @@ See demo [here](http://delandbeforeti.me/p5-shirt/)
 
 ---
 
-## Data Flow Diagram
+### Data Flow Diagram
 ![](img/DataFlowDiagram.png)
 
 ---
 
-## Variable State Table
-_COMING SOON_ 
+### Variable State Table
+_COMING SOON_
