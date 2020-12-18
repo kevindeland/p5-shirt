@@ -11,18 +11,24 @@ let CH;
 // this should be the ONLY module that interacts w/
 // p5.js functions that draw on the canvas (math is okay)
 
-let drawVerticalStripe;
+let drawCenteredVerticalStripe;
+let drawLeftVerticalStripe;
 
 InitCanvasDrawer = function() {
 
-  drawVerticalStripe = function(x, c) {
-    const THICKNESS = 10
+  drawCenteredVerticalStripe = function(x, c, THICKNESS) {
     const x1 = x - THICKNESS/2
     const x2 = x + THICKNESS/2
   
     fill(c)
     noStroke()
     rect(x1, 0, THICKNESS, CH)
+  }
+
+  drawLeftVerticalStripe = function(x, c, THICKNESS) {
+    fill(c)
+    noStroke()
+    rect(x, 0, THICKNESS, CH)
   }
 }
 
@@ -34,50 +40,6 @@ InitCanvasDrawer = function() {
 // that can be applied to an input
 
 // *****************************
-
-
-// *****************************
-// ******* Color Palette *******
-// *****************************
-
-// For defining colors
-
-let ColorPalette, HUE_MAX;
-
-InitColors = function() {
-
-  ColorPalette = {
-    'ylw': color( 2, 8, 16),
-    'grn': color( 6, 8, 12),
-    'red': color( 0, 8, 14),
-    'bl1': color( 9, 8, 14),
-    'bl2': color(10, 8, 10),
-  }
-}
-// *****************************
-
-// *****************************
-// ******* Pattern Bank ********
-// *****************************
-
-// For defining patterns
-
-let PatternBank;
-
-InitPatternBank = function() {
-  
-  PatternBank = {
-    'stripes': [
-      'ylw',
-      'bl2',
-      'bl1',
-      'grn',
-      'bl2',
-      'bl1',
-      'red',
-    ]
-  }
-}
 
 
 // *****************************
@@ -106,21 +68,56 @@ function draw() {
 
   background(16);
 
-  const patternId = 'stripes'
+  const patternId = 'stripes2'
 
-  let myColorIds = PatternBank[patternId]
-  let myColors = myColorIds.map(function(id) {
-    return ColorPalette[id]
-  })
-  
-  // console.log(myColors[6])
-  const dist = 50
-  let i=0, drawColor;
-  while (i*dist <= CW) {
-    drawColor = myColors[i%myColors.length];
-    drawVerticalStripe(i*dist, drawColor)
-    i++
+  let myPattern = PatternBank[patternId]
+
+  let i, drawColor;
+  switch(myPattern.type) {
+    case 'Type1':
+      let myColorIds = myPattern.stripes
+      let myColors = myColorIds.map(function(id) {
+        return ColorPalette[id]
+      })
+      
+      // console.log(myColors[6])
+      const dist = myPattern.distance;
+      i=0
+    
+      while (i*dist <= CW) {
+        drawColor = myColors[i%myColors.length];
+        drawCenteredVerticalStripe(i*dist, drawColor, myPattern.thickness)
+        i++
+      }
+      break;
+
+
+      case 'Type2':
+        let myColorIdsAndWidths = myPattern.stripes;
+        const NUM_PATTERNS = myColorIdsAndWidths.length;
+        let multiplier = myPattern.multiplier
+
+        // accumulating x
+        let xAcc = 0;
+        i=0
+
+        while (xAcc <= CW) {
+
+          let colorId = myColorIdsAndWidths[i % NUM_PATTERNS][0]
+          drawColor = ColorPalette[colorId]
+          
+          thickness = myColorIdsAndWidths[i % NUM_PATTERNS][1] * multiplier
+
+          drawLeftVerticalStripe(xAcc, drawColor, thickness)
+
+          i++
+          xAcc += thickness
+        }
+
+      break;
+
   }
+  
 
   dirty = false
 }
