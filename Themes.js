@@ -24,7 +24,13 @@ InitColors = function() {
 
     'checkWhite': color(0, 0, 16, 0),
     'checkGray': color(0, 0, 8, 8),
-    'checkBlue': color(10, 14, 4, 8)
+    'checkBlue': color(10, 14, 4, 8),
+
+    'gridWhite': color(0, 0, 16, 0),
+    'gridGray1': color(0, 0, 6, 8),
+    'gridGray2': color(0, 0, 9, 8),
+    'gridGray3': color(0, 0, 12, 8),
+    'gridGray4': color(0, 0, 14, 8),
   }
 }
 // *****************************
@@ -86,6 +92,19 @@ InitPatternBank = function() {
       ],
       horizontal: [
         'checkWhite', 'checkGray'
+      ]
+    },
+
+    'checker2': {
+      type: 'SimplePlaid',
+      thickness: 8,
+      vertical: [
+        'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1', 'gridWhite', 'gridGray1',
+        'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3', 'gridWhite', 'gridGray3',
+      ],
+      horizontal: [
+        'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2', 'gridWhite', 'gridGray2',
+        'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4', 'gridWhite', 'gridGray4',
       ]
     }
   }

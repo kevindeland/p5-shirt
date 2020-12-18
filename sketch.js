@@ -75,7 +75,7 @@ function draw() {
 
   background(16);
 
-  const patternId = 'checker1'
+  const patternId = 'checker2'
 
   let myPattern = PatternBank[patternId]
 
