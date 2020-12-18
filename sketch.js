@@ -11,18 +11,25 @@ let CH;
 // this should be the ONLY module that interacts w/
 // p5.js functions that draw on the canvas (math is okay)
 
-let drawCenteredVerticalStripe;
+let drawCenteredVerticalStripe, drawCenteredHorizontalStripe;
 let drawLeftVerticalStripe;
 
 InitCanvasDrawer = function() {
 
   drawCenteredVerticalStripe = function(x, c, THICKNESS) {
     const x1 = x - THICKNESS/2
-    const x2 = x + THICKNESS/2
   
     fill(c)
     noStroke()
     rect(x1, 0, THICKNESS, CH)
+  }
+
+  drawCenteredHorizontalStripe = function(y, c, THICKNESS) {
+    const y1 = y - THICKNESS/2
+
+    fill(c)
+    noStroke()
+    rect(0, y1, CW, THICKNESS)
   }
 
   drawLeftVerticalStripe = function(x, c, THICKNESS) {
@@ -68,11 +75,12 @@ function draw() {
 
   background(16);
 
-  const patternId = 'stripes2'
+  const patternId = 'checker1'
 
   let myPattern = PatternBank[patternId]
 
-  let i, drawColor;
+  let i, drawColor, thickness;
+
   switch(myPattern.type) {
     case 'Type1':
       let myColorIds = myPattern.stripes
@@ -94,7 +102,7 @@ function draw() {
 
       case 'Type2':
         let myColorIdsAndWidths = myPattern.stripes;
-        const NUM_PATTERNS = myColorIdsAndWidths.length;
+        NUM_PATTERNS = myColorIdsAndWidths.length;
         let multiplier = myPattern.multiplier
 
         // accumulating x
@@ -115,6 +123,31 @@ function draw() {
         }
 
       break;
+
+
+      case 'SimplePlaid':
+        let verticals = myPattern.vertical;
+        let horizontals = myPattern.horizontal;
+        thickness = myPattern.thickness
+
+
+        i=0
+        while (i*thickness <= CH) {
+          let colorId = horizontals[i % horizontals.length]
+          drawColor = ColorPalette[colorId]
+          drawCenteredHorizontalStripe(i*thickness, drawColor, thickness)
+          i++
+        }
+
+
+        i=0
+        while (i*thickness <= CW) {
+          let colorId = verticals[i % verticals.length]
+          drawColor = ColorPalette[colorId]
+          drawCenteredVerticalStripe(i*thickness, drawColor, thickness)
+          i++
+        }
+
 
   }
   

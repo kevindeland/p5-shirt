@@ -21,6 +21,10 @@ InitColors = function() {
     'crem': color( 2, 1, 16, 14), // creamier √
     'gren': color( 6, 4, 8, 14), // darker √
     'navy': color(10, 6, 8, 14), // darker
+
+    'checkWhite': color(0, 0, 16, 0),
+    'checkGray': color(0, 0, 8, 8),
+    'checkBlue': color(10, 14, 4, 8)
   }
 }
 // *****************************
@@ -72,6 +76,17 @@ InitPatternBank = function() {
         ['gold', 3],
         ['navy', 40],
       ],
+    },
+
+    'checker1': {
+      type: 'SimplePlaid',
+      thickness: 20,
+      vertical: [
+        'checkWhite', 'checkBlue'
+      ],
+      horizontal: [
+        'checkWhite', 'checkGray'
+      ]
     }
   }
 }
